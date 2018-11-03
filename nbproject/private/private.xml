@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Raleigh/Dropbox/School%20work/Game%20Programming%204/Assign2/Chessboard/src/assign1/chessboard/Chessboard.java</file>
+            <file>file:/C:/Users/Peter%20Russo/Documents/NetBeansProjects/GameProg4Assign3-Peter/src/assign1/chessboard/Chessboard.java</file>
+            <file>file:/C:/Users/Peter%20Russo/Documents/NetBeansProjects/GameProg4Assign3-Peter/src/pieces/Bishop.java</file>
+            <file>file:/C:/Users/Peter%20Russo/Documents/NetBeansProjects/GameProg4Assign3-Peter/src/pieces/Pawn.java</file>
+            <file>file:/C:/Users/Peter%20Russo/Documents/NetBeansProjects/GameProg4Assign3-Peter/src/board/Board.java</file>
+            <file>file:/C:/Users/Peter%20Russo/Documents/NetBeansProjects/GameProg4Assign3-Peter/src/pieces/Knight.java</file>
+            <file>file:/C:/Users/Peter%20Russo/Documents/NetBeansProjects/GameProg4Assign3-Peter/src/pieces/Piece.java</file>
+            <file>file:/C:/Users/Peter%20Russo/Documents/NetBeansProjects/GameProg4Assign3-Peter/src/board/Square.java</file>
+            <file>file:/C:/Users/Peter%20Russo/Documents/NetBeansProjects/GameProg4Assign3-Peter/src/pieces/Queen.java</file>
+            <file>file:/C:/Users/Peter%20Russo/Documents/NetBeansProjects/GameProg4Assign3-Peter/src/pieces/King.java</file>
+            <file>file:/C:/Users/Peter%20Russo/Documents/NetBeansProjects/GameProg4Assign3-Peter/src/pieces/Rook.java</file>
         </group>
     </open-files>
 </project-private>

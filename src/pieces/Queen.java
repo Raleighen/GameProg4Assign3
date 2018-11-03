@@ -58,7 +58,17 @@ public class Queen extends Piece {
         }
         return false;
     }
-
+    @Override
+    public void setter(int a, int b)
+    {
+        
+    }
+    @Override
+    public boolean lowCh(String Place, int x1, int y1, int x2, int y2)
+    {
+        return false;
+    }
+    
     @Override
     public void moveTo(int x, int y) {
         if (canMoveTo(x, y)) {

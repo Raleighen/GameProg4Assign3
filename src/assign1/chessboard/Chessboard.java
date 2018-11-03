@@ -125,7 +125,23 @@ public class Chessboard {
                     } else {
                         System.out.println("Invalid movement Q");
                     }
-                } else if (pieceChosen.canMoveTo(x2, y2) && pieceChosen.getChar() != 'Q') {
+                    
+                } else if(pieceChosen.getChar() == 'B') {
+                    pieceChosen.setter (x1,y1);
+                    if (pieceChosen.canMoveTo(x2, y2))
+                    {
+                    board.setSquareP(x1, y1, null);
+                    board.CheckSqu(x2, y2);
+                    pieceChosen.moveTo(x2, y2);
+                    board.setSquareP(x2, y2, pieceChosen);
+                    play2 = false;        
+                    }
+                    else
+                    {
+                        System.out.println("error on bishop move");
+                    }
+                }
+                    else if (pieceChosen.canMoveTo(x2, y2) && pieceChosen.getChar() != 'Q') {
                     board.setSquareP(x1, y1, null);
                     board.CheckSqu(x2, y2);
                     pieceChosen.moveTo(x2, y2);

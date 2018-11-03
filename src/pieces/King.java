@@ -22,7 +22,16 @@ public class King extends Piece implements Serializable {
             return false;
         }
     }
-
+    @Override
+    public boolean lowCh(String place, int a, int b, int c,int d)
+    {
+        return true;
+    }
+    @Override
+    public void setter(int a, int b)
+    {
+        
+    }
     @Override
     public void moveTo(int x, int y) {
         //if the piece can move

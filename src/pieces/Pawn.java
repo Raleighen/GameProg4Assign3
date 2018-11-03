@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class Pawn extends Piece implements Serializable {
     private int move = 0;
-    Board board = new Board();
+    
     public Pawn(int x, int y, char c, String color) {
         super(x, y, c, color);
         c = 'P';
@@ -15,7 +15,7 @@ public class Pawn extends Piece implements Serializable {
     
     @Override
     public boolean canMoveTo(int x, int y) {
-        
+        Board board = new Board();
         if (move < 2) {
             switch (Colour.toLowerCase()){
                 case "white":
@@ -66,9 +66,21 @@ public class Pawn extends Piece implements Serializable {
         }
     }
     
+            
+    @Override
+    public boolean lowCh(String place, int a, int b, int c,int d)
+    {
+        return true;
+    }
+    @Override
+    public void setter(int a, int b)
+    {
+        
+    }
     //@Override
     public boolean canTake(int x, int y)
     {
+        Board board = new Board();
         switch (Colour.toLowerCase())
         {
             case "white":
