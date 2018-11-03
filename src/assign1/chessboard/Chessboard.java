@@ -117,6 +117,7 @@ public class Chessboard {
                 if (pieceChosen.getChar() == 'Q') {
                     Queen pieceChosenQ = new Queen(x1, y1, 'Q', col);
                     if (pieceChosenQ.canMoveTo(x2, y2, board)) {
+                        board.CheckSqu(x2, y2);
                         board.setSquareP(x1, y1, null);
                         pieceChosen.moveTo(x2, y2);
                         board.setSquareP(x2, y2, pieceChosen);
@@ -126,6 +127,7 @@ public class Chessboard {
                     }
                 } else if (pieceChosen.canMoveTo(x2, y2) && pieceChosen.getChar() != 'Q') {
                     board.setSquareP(x1, y1, null);
+                    board.CheckSqu(x2, y2);
                     pieceChosen.moveTo(x2, y2);
                     board.setSquareP(x2, y2, pieceChosen);
                     play2 = false;

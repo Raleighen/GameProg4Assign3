@@ -10,7 +10,10 @@ public abstract class Piece implements Serializable {
     protected String Colour;
     
     abstract public boolean canMoveTo(int x, int y);
+    //abstract public boolean canTake(int x, int y);
     abstract public void moveTo(int x, int y);
+    
+    
     
     public Piece(int x, int y, char c, String colour) {
         this.x = x;

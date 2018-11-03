@@ -114,4 +114,14 @@ public class Board implements Serializable {
     public void setSquare(int x, int y, Square square) {
         this.gameBoard[x][y].setSquare(square);
     }
+    
+    // for checking to see if a piece is taken and then saying what was taken
+    public void CheckSqu (int x, int y)
+    {
+        getSquare(x,y);
+        if (getSquare(x,y).getPiece() != null)
+        {
+            System.out.println("You have taken");
+        }
+    }
 }
