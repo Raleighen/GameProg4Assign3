@@ -8,12 +8,16 @@ public class Square implements Serializable {
     int x;
     int y;
     Piece piece;
+    public int bt;
+    public int wt;
 
     //constructor?
     public Square(int x, int y, Piece piece) {
         this.x = x;
         this.y = y;
         this.piece = piece;
+        this.bt = 0;
+        this.wt = 0;
     }
 
     public Square(int x, int y) {
@@ -45,6 +49,16 @@ public class Square implements Serializable {
         this.x = x;
         this.y = y;
         this.piece = piece;
+    }
+    
+    public int getThreatBT()
+    {
+        return bt;
+    }
+    
+    public int getThreatWT()
+    {
+        return wt;
     }
     
     //method for setting when loading

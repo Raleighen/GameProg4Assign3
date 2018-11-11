@@ -1,6 +1,7 @@
 //Miranda Dorosz
 package pieces;
 
+import board.Board;
 import java.io.Serializable;
 
 public class King extends Piece implements Serializable {
@@ -11,7 +12,7 @@ public class King extends Piece implements Serializable {
     }
 
     @Override
-    public boolean canMoveTo(int x, int y) {
+    public boolean canMoveTo(int x, int y, Board board) {
         //if piece wants to move diagonally || left/right || up/down
         if((this.x + 1 == x && this.y + 1 == y) || (this.x - 1 ==x && this.y - 1 == y)
         || ((this.x + 1 == x && this.y == y) || (this.x - 1 == x && this.y == y)) 
@@ -23,7 +24,7 @@ public class King extends Piece implements Serializable {
         }
     }
     @Override
-    public boolean lowCh(String place, int a, int b, int c,int d)
+    public boolean lowCh(String place, int a, int b, int c,int d, Board board)
     {
         return true;
     }
@@ -33,9 +34,33 @@ public class King extends Piece implements Serializable {
         
     }
     @Override
-    public void moveTo(int x, int y) {
+    public boolean canTake(int x, int y, Board board)
+    {
+        if (board.getSquare(x, y).getPiece() == null)
+        {
+            return true;
+        }else{
+        switch (Colour.toLowerCase())
+        {
+            case "white":  return "black".equals(board.getSquare(x,y).getPiece().Colour);
+        
+            case "black":  return "white".equals(board.getSquare(x,y).getPiece().Colour);
+            
+            default:  return false;                    
+        }
+      }
+    }
+    
+    @Override
+    public void Threaten()
+    {
+        
+    }
+    
+    @Override
+    public void moveTo(int x, int y,Board board) {
         //if the piece can move
-        if(canMoveTo(x, y)) {
+        if(canMoveTo(x, y, board)) {
             this.x = x;
             this.y = y;
         } else {

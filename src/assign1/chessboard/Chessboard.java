@@ -114,37 +114,36 @@ public class Chessboard {
                     }
                 }
 
-                if (pieceChosen.getChar() == 'Q') {
-                    Queen pieceChosenQ = new Queen(x1, y1, 'Q', col);
-                    if (pieceChosenQ.canMoveTo(x2, y2, board)) {
-                        board.CheckSqu(x2, y2);
-                        board.setSquareP(x1, y1, null);
-                        pieceChosen.moveTo(x2, y2);
-                        board.setSquareP(x2, y2, pieceChosen);
-                        play2 = false;
-                    } else {
-                        System.out.println("Invalid movement Q");
-                    }
+
                     
-                } else if(pieceChosen.getChar() == 'B') {
+                if(pieceChosen.getChar() == 'B' || pieceChosen.getChar() == 'R' || pieceChosen.getChar() == 'Q') {
                     pieceChosen.setter (x1,y1);
-                    if (pieceChosen.canMoveTo(x2, y2))
+                    if (pieceChosen.canMoveTo(x2, y2, board))
                     {
                     board.setSquareP(x1, y1, null);
+                    for (int a = 0;board.allsi.size()>= a;a++)
+                    {
+                        //idea is that it will loop and call threat for each piece.
+                        //will need to activate it at a good time
+                        //create reset point at a = 0 to make all threat into nothing.
+                        board.allsi.get(a).Threaten();
+                    }
                     board.CheckSqu(x2, y2);
-                    pieceChosen.moveTo(x2, y2);
+                    pieceChosen.moveTo(x2, y2, board);
                     board.setSquareP(x2, y2, pieceChosen);
-                    play2 = false;        
+                    play2 = false;
                     }
                     else
                     {
-                        System.out.println("error on bishop move");
+                        System.out.println("error on move");
                     }
                 }
-                    else if (pieceChosen.canMoveTo(x2, y2) && pieceChosen.getChar() != 'Q') {
+                //incase we need it again
+                 //&& pieceChosen.getChar() != 'Q' || pieceChosen.getChar() == 'B' || pieceChosen.getChar() == 'R'
+                    else if (pieceChosen.canMoveTo(x2, y2, board)) {
                     board.setSquareP(x1, y1, null);
                     board.CheckSqu(x2, y2);
-                    pieceChosen.moveTo(x2, y2);
+                    pieceChosen.moveTo(x2, y2, board);
                     board.setSquareP(x2, y2, pieceChosen);
                     play2 = false;
                 } else {
