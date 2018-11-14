@@ -7,6 +7,7 @@ import board.*;
 public class Bishop extends Piece implements Serializable {
     
     int xt,yt;
+    int tempx, tempy;
     public Bishop(int x, int y, char c, String color) {
         super(x, y, c, color);
         c = 'B';
@@ -139,9 +140,78 @@ public class Bishop extends Piece implements Serializable {
     }
     
     @Override
-    public void Threaten()
+    public void Threaten(Board board)
     {
         
+        switch (Colour.toLowerCase())
+        {
+            case "white":
+                tempx = this.x;
+                tempy = this.y;
+                    while(board.getSquare(tempx,tempy).getPiece() == null && tempx <= 7 && tempy <= 7)
+                    {
+                        board.getSquare(tempx,tempy).wt = board.getSquare(tempx,tempy).wt +1; 
+                        tempx = tempx +1;
+                        tempy = tempy +1;
+                    }
+                tempx = this.x;
+                tempy = this.y;
+                    while(board.getSquare(tempx,tempy).getPiece() == null && tempx >= 0 && tempy <= 7)
+                    {
+                       board.getSquare(tempx,tempy).wt = board.getSquare(tempx,tempy).wt +1; 
+                       tempx = tempx -1;
+                       tempy = tempy +1;
+                    }
+                tempx = this.x;
+                tempy = this.y;
+                    while(board.getSquare(tempx,tempy).getPiece() == null && tempx <= 7 && tempy >= 0)
+                    {
+                         board.getSquare(tempx,tempy).wt = board.getSquare(tempx,tempy).wt +1;
+                         tempx = tempx +1;
+                         tempy = tempy -1;
+                    }
+                tempx = this.x;
+                tempy = this.y;
+                    while(board.getSquare(tempx,tempy).getPiece() == null && tempx >= 0 && tempy >= 0)
+                    {
+                      board.getSquare(tempx,tempy).wt = board.getSquare(tempx,tempy).wt +1;
+                      tempx = tempx -1;
+                      tempy = tempy -1;
+                    }               
+            case "black":
+                tempx = this.x;
+                tempy = this.y;
+                    while(board.getSquare(tempx,tempy).getPiece() == null && tempx <= 7 && tempy <= 7)
+                    {
+                    board.getSquare(tempx,tempy).bt = board.getSquare(tempx,tempy).bt +1; 
+                    tempx = tempx +1;
+                    tempy = tempy +1;
+                    }
+                tempx = this.x;
+                tempy = this.y;
+                    while(board.getSquare(tempx,tempy).getPiece() == null && tempx <=7 && tempy >= 0)
+                    {
+                       board.getSquare(tempx,tempy).bt = board.getSquare(tempx,tempy).bt +1; 
+                       tempx = tempx +1;
+                       tempy = tempy -1;
+                    }
+                tempx = this.x;
+                tempy = this.y;
+                    while(board.getSquare(tempx,tempy).getPiece() == null && tempx >= 0 && tempy <= 7)
+                    {
+                         board.getSquare(tempx,tempy).bt = board.getSquare(tempx,tempy).bt +1;
+                         tempx = tempx -1;
+                         tempy = tempy +1;
+                    }
+                tempx = this.x;
+                tempy = this.y;
+                    while(board.getSquare(tempx,tempy).getPiece() == null && tempx >= 0 && tempy >= 0)
+                    {
+                      board.getSquare(tempx,tempy).bt = board.getSquare(tempx,tempy).bt +1;  
+                      tempx = tempx -1;
+                      tempy = tempy -1;
+                    }    
+        }
     }
     
     
@@ -154,4 +224,12 @@ public class Bishop extends Piece implements Serializable {
             System.out.println("Error: Cannot move to requested spot.");
         }
     }
+    
+    //useless code section i would like to figure out how to remove to improve efficeny if we have the time and are completly done
+    @Override
+    public boolean Danger(Board board)
+    {
+        return false;
+    }        
+    
 }

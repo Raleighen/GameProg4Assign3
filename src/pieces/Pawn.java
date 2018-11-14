@@ -63,21 +63,7 @@ public class Pawn extends Piece implements Serializable {
                     return false;
             }
         }
-    }
-    
-            
-    @Override
-    public boolean lowCh(String place, int a, int b, int c,int d, Board board)
-    {
-        return true;
-    }
-    
-    @Override
-    public void setter(int a, int b)
-    {
-        
-    }
-    
+    }    
 
     @Override
     public boolean canTake(int x, int y, Board board)
@@ -96,8 +82,7 @@ public class Pawn extends Piece implements Serializable {
     
     @Override
     public void Threaten(Board board)
-    {
-        
+    {        
         switch (Colour.toLowerCase())
         {
             case "white": 
@@ -118,5 +103,26 @@ public class Pawn extends Piece implements Serializable {
         } else {
             System.out.println("Error: Cannot move to requested spot.");
         }
+    }
+    
+    
+    
+    //useless code section i would like to figure out how to remove to improve efficeny if we have the time and are completly done
+    @Override
+    public boolean Danger(Board board)
+    {
+        return false;
+    }        
+                 
+    @Override
+    public boolean lowCh(String place, int a, int b, int c,int d, Board board)
+    {
+        return true;
+    }
+    
+    @Override
+    public void setter(int a, int b)
+    {
+        
     }
 }

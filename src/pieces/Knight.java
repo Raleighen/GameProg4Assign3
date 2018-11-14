@@ -32,16 +32,6 @@ public class Knight extends Piece implements Serializable {
             return false;
         }
     }
-    @Override
-    public boolean lowCh(String place, int a, int b, int c,int d, Board board)
-    {
-        return true;
-    }
-    @Override
-    public void setter(int a, int b)
-    {
-        
-    }
     
     @Override
     public boolean canTake(int x, int y, Board board)
@@ -61,14 +51,38 @@ public class Knight extends Piece implements Serializable {
       }
     }
     
+    
+    //idea for the future of a simplified version of the Threaten system
+    //issue:  cannot create a system in which it will insert the +1 to the correct colour
+    public void Scary(Board board)
+    {
+            board.getSquare(this.x +1,this.y -1).wt = board.getSquare(this.x +1,this.y -1).wt +1;
+        
+    }
+    
     @Override
     public void Threaten(Board board)
     {
         switch (Colour.toLowerCase())
         {
-            case "white":
-                
-            case "black":
+            case "white": 
+                    board.getSquare(this.x +1,this.y +2).wt = board.getSquare(this.x +1,this.y +2).wt +1;
+                    board.getSquare(this.x -1,this.y +2).wt = board.getSquare(this.x -1,this.y +2).wt +1;
+                    board.getSquare(this.x +2,this.y +1).wt = board.getSquare(this.x +2,this.y +1).wt +1;
+                    board.getSquare(this.x +2,this.y -1).wt = board.getSquare(this.x +2,this.y -1).wt +1;
+                    board.getSquare(this.x +1,this.y -2).wt = board.getSquare(this.x +1,this.y -2).wt +1;
+                    board.getSquare(this.x -1,this.y -2).wt = board.getSquare(this.x -1,this.y -2).wt +1;
+                    board.getSquare(this.x -2,this.y +1).wt = board.getSquare(this.x -2,this.y +1).wt +1;
+                    board.getSquare(this.x -2,this.y -1).wt = board.getSquare(this.x -2,this.y -1).wt +1;                    
+            case "black": 
+                    board.getSquare(this.x +1,this.y +2).bt = board.getSquare(this.x +1,this.y +2).bt +1;
+                    board.getSquare(this.x -1,this.y +2).bt = board.getSquare(this.x -1,this.y +2).bt +1;
+                    board.getSquare(this.x +2,this.y +1).bt = board.getSquare(this.x +2,this.y +1).bt +1;
+                    board.getSquare(this.x +2,this.y -1).bt = board.getSquare(this.x +2,this.y -1).bt +1;
+                    board.getSquare(this.x +1,this.y -2).bt = board.getSquare(this.x +1,this.y -2).bt +1;
+                    board.getSquare(this.x -1,this.y -2).bt = board.getSquare(this.x -1,this.y -2).bt +1;
+                    board.getSquare(this.x -2,this.y +1).bt = board.getSquare(this.x -2,this.y +1).bt +1;
+                    board.getSquare(this.x -2,this.y -1).bt = board.getSquare(this.x -2,this.y -1).bt +1; 
         }
     }
     
@@ -80,5 +94,25 @@ public class Knight extends Piece implements Serializable {
         } else {
             System.out.println("Error: Cannot move to requested spot.");
         }
+    }
+    
+    
+    
+    
+    //useless code section i would like to figure out how to remove to improve efficeny if we have the time and are completly done
+    @Override
+    public boolean Danger(Board board)
+    {
+        return false;
+    }        
+    @Override
+    public boolean lowCh(String place, int a, int b, int c,int d, Board board)
+    {
+        return true;
+    }
+    @Override
+    public void setter(int a, int b)
+    {
+        
     }
 }
