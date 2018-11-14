@@ -16,6 +16,7 @@ public class Chessboard {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException{
         int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+        int WKingx = 4,WKingy = 7, BKingx = 4, BKingy = 0;
         String col = null, scan;
         SaveSystem saveS = new SaveSystem();
         boolean game = true, play1 = true, play2 = true;
@@ -121,14 +122,12 @@ public class Chessboard {
                     if (pieceChosen.canMoveTo(x2, y2, board))
                     {
                     board.setSquareP(x1, y1, null);
-                    for (int a = 0;board.allsi.size()>= a;a++)
-                    {
-                        //idea is that it will loop and call threat for each piece.
-                        //will need to activate it at a good time
-                        //create reset point at a = 0 to make all threat into nothing.
-                        board.allsi.get(a).Threaten();
-                    }
-                    board.CheckSqu(x2, y2);
+                    Scary(board);
+                    //next call the isThreat() from the kings to see if they are in check now.
+                    //if they are the move should be invalid and should reset with the setSquare being the same location as before.  
+                    Ccheck(WKingx, WKingy, BKingx, BKingy, board);
+                    
+                    board.CheckSqu(x2, y2); // this will kill any piece that is at the location.
                     pieceChosen.moveTo(x2, y2, board);
                     board.setSquareP(x2, y2, pieceChosen);
                     play2 = false;
@@ -138,11 +137,35 @@ public class Chessboard {
                         System.out.println("error on move");
                     }
                 }
+                else if(pieceChosen.getChar() == 'K'){
+                    if (pieceChosen.canMoveTo(x2, y2, board))
+                    {
+                    board.setSquare(x1, y1, null);
+                    Scary(board);
+                    Ccheck(WKingx, WKingy, BKingx, BKingy, board);
+                    board.CheckSqu(x2, y2);
+                    pieceChosen.moveTo(x2, y2, board);
+                    board.setSquareP(x2, y2, pieceChosen);
+                    switch (pieceChosen.getColour().toLowerCase())
+                    {
+                    case "white": WKingx = x2; WKingy = y2;
+                    
+                    case "black": BKingx = x2; BKingy = y2;
+                    }
+                    
+                    }
+                    else
+                    {
+                        System.out.println("error on move");
+                    }
+                    
+                }
                 //incase we need it again
                  //&& pieceChosen.getChar() != 'Q' || pieceChosen.getChar() == 'B' || pieceChosen.getChar() == 'R'
-                    else if (pieceChosen.canMoveTo(x2, y2, board)) {
+                else if (pieceChosen.canMoveTo(x2, y2, board)) {
                     board.setSquareP(x1, y1, null);
-                    board.CheckSqu(x2, y2);
+                    Scary(board);
+                    Ccheck(WKingx, WKingy, BKingx, BKingy, board);
                     pieceChosen.moveTo(x2, y2, board);
                     board.setSquareP(x2, y2, pieceChosen);
                     play2 = false;
@@ -163,6 +186,32 @@ public class Chessboard {
                     break;
                 default:
                     break;
+            }
+        }
+    }
+    public static void Ccheck(int x1, int y1, int x2, int y2, Board board)
+    {
+        board.getSquare(x1, y1).getPiece().Danger(board);
+        board.getSquare(x2, y2).getPiece().Danger(board);
+    }
+    //idea is that it will loop and call threat for each piece.   
+    public static void Scary(Board board)
+    {
+       Clean(board);
+       for (int a = 0;board.allsi.size()>= a;a++)                   
+       {                        
+        //will need to activate it at a good time
+        board.allsi.get(a).Threaten(board);
+       }
+    }
+    public static void Clean(Board board) //cleaner
+    {
+        for (int i = 0; i<7; i++)
+        {
+            for (int j = 0; j<7; j++)
+            {
+                board.getSquare(i,j).wt = 0;
+                board.getSquare(i, j).bt = 0;
             }
         }
     }

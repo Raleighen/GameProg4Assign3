@@ -2,6 +2,7 @@
 package pieces;
 
 import board.Board;
+import assign1.chessboard.Chessboard;
 import java.io.Serializable;
 
 public class King extends Piece implements Serializable {
@@ -23,16 +24,7 @@ public class King extends Piece implements Serializable {
             return false;
         }
     }
-    @Override
-    public boolean lowCh(String place, int a, int b, int c,int d, Board board)
-    {
-        return true;
-    }
-    @Override
-    public void setter(int a, int b)
-    {
-        
-    }
+
     @Override
     public boolean canTake(int x, int y, Board board)
     {
@@ -52,9 +44,29 @@ public class King extends Piece implements Serializable {
     }
     
     @Override
-    public void Threaten()
+    public void Threaten(Board board)
     {
-        
+        switch (Colour.toLowerCase())
+        {
+            case "white":
+                    board.getSquare(this.x,this.y +1).wt = board.getSquare(this.x,this.y +1).wt +1;
+                    board.getSquare(this.x +1,this.y +1).wt = board.getSquare(this.x +1,this.y +1).wt +1;
+                    board.getSquare(this.x +1,this.y).wt = board.getSquare(this.x +1,this.y).wt +1;
+                    board.getSquare(this.x +1,this.y -1).wt = board.getSquare(this.x +1,this.y -1).wt +1;
+                    board.getSquare(this.x,this.y -1).wt = board.getSquare(this.x,this.y -1).wt +1;
+                    board.getSquare(this.x -1,this.y -1).wt = board.getSquare(this.x -1,this.y -1).wt +1;
+                    board.getSquare(this.x -1,this.y).wt = board.getSquare(this.x -1,this.y).wt +1;
+                    board.getSquare(this.x -1,this.y +1).wt = board.getSquare(this.x -1,this.y +1).wt +1; 
+            case "black":    
+                    board.getSquare(this.x,this.y +1).bt = board.getSquare(this.x,this.y +1).bt +1;
+                    board.getSquare(this.x +1,this.y +1).bt = board.getSquare(this.x +1,this.y +1).bt +1;
+                    board.getSquare(this.x +1,this.y).bt = board.getSquare(this.x +1,this.y).bt +1;
+                    board.getSquare(this.x +1,this.y -1).bt = board.getSquare(this.x +1,this.y -1).bt +1;
+                    board.getSquare(this.x,this.y -1).bt = board.getSquare(this.x,this.y -1).bt +1;
+                    board.getSquare(this.x -1,this.y -1).bt = board.getSquare(this.x -1,this.y -1).bt +1;
+                    board.getSquare(this.x -1,this.y).bt = board.getSquare(this.x -1,this.y).bt +1;
+                    board.getSquare(this.x -1,this.y +1).bt = board.getSquare(this.x -1,this.y +1).bt +1; 
+        }
     }
     
     @Override
@@ -66,10 +78,36 @@ public class King extends Piece implements Serializable {
         } else {
                 System.out.println("Error: Cannot move to requested spot.");
             }
+        } 
+    
+    @Override
+    public boolean Danger(Board board)
+    {
+        switch (Colour.toLowerCase())
+        {
+            case "white": if(board.getSquare(this.x, this.y).bt == 0);// create bt check here
+                
+            case "black": if(board.getSquare(this.x, this.y).wt == 0);// create wt check here
+                
+            default: System.out.println("error in king danger"); return false;
         }
     }
     
-
+    
+    
+    
+   //useless code section i would like to figure out how to remove to improve efficeny if we have the time and are completly done
+    @Override
+    public boolean lowCh(String place, int a, int b, int c,int d, Board board)
+    {
+        return true;
+    }
+    @Override
+    public void setter(int a, int b)
+    {
+        
+    }
+}
 /*
     Can only move 1 sq in any direction (including diagonals).
     Cannot move into check
